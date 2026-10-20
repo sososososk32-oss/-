@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для моей сладости</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            transition: background-color 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- СТРАШНЫЙ ТАЙМЕР (СОВРЕМЕННЫЙ ХОРРОР-МИНИМАЛИЗМ) --- */
+        #timer-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            color: #e50914; /* Приглушенный глубокий красный */
+            text-align: center;
+            padding: 24px;
+        }
+
+        .scary-title {
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 7px;
+            margin-bottom: 40px;
+            color: #444444;
+            animation: pulse 4s infinite alternate;
+        }
+
+        #countdown {
+            font-size: 56px;
+            font-weight: 300; /* Тонкое начертание для премиального вида */
+            letter-spacing: -1px;
+            font-variant-numeric: tabular-nums;
+            opacity: 0.95;
+        }
+
+        /* --- СТРАНИЦА ПОЗДРАВЛЕНИЯ (ЧИСТЫЙ МИНИМАЛИЗМ) --- */
+        #content-screen {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            background-color: #ffffff;
+            color: #000000;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 24px;
+        }
+
+        .container {
+            max-width: 440px; /* Чуть уже, чтобы на смартфонах смотрелось аккуратнее */
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .birthday-title {
+            font-size: 26px;
+            font-weight: 600;
+            line-height: 1.35;
+            letter-spacing: -0.5px;
+            margin-bottom: 48px;
+            color: #111111;
+        }
+
+        .media-box {
+            width: 100%;
+            border-radius: 8px; /* Лаконичные легкие скругления */
+            overflow: hidden;
+            margin-bottom: 24px;
+            background-color: #fafafa;
+        }
+
+        .media-box img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .gift-text {
+            font-size: 16px;
+            font-weight: 400;
+            color: #86868b; /* Спокойный серый цвет, как подписи у Apple */
+            margin-top: 32px;
+            letter-spacing: -0.2px;
+            transition: color 0.3s ease;
+        }
+
+        /* Эффект при наведении на финальный текст */
+        .gift-text:hover {
+            color: #000000;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ЭКРАН С ТАЙМЕРОМ -->
+    <div id="timer-screen">
+        <div class="scary-title">что то важное</div>
+        <div id="countdown">00:00:00:00</div>
+    </div>
+
+    <!-- ЭКРАН С ПОЗДРАВЛЕНИЕМ -->
+    <div id="content-screen">
+        <div class="container">
+            <h1 class="birthday-title">С днем рождения моя любимаяя сладость</h1>
+            
+            <!-- ГИФКА (Верхняя) -->
+            <div class="media-box">
+                <img src="res/cat-kitty.gif" alt="Гифка">
+            </div>
+
+            <!-- КАРТИНКА (Нижняя) -->
+            <div class="media-box">
+                <img src="https://unsplash.com" alt="Фото">
+            </div>
+
+            <div class="gift-text">пойди забери свой подарунок <3</div>
+        </div>
+    </div>
+
+    <script>
+        // Чтобы протестировать и сразу открыть поздравление, поменяйте false на true:
+        const testMode = true; 
+
+        // Таймер настроен на 28 октября 2026 года, 00:00:00
+        const targetDate = new Date(2026, 9, 28, 0, 0, 0).getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0 || testMode) {
+                openSite();
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            const d = days < 10 ? '0' + days : days;
+            const h = hours < 10 ? '0' + hours : hours;
+            const m = minutes < 10 ? '0' + minutes : minutes;
+            const s = seconds < 10 ? '0' + seconds : seconds;
+
+            document.getElementById('countdown').innerHTML = `${d}:${h}:${m}:${s}`;
+        }
+
+        function openSite() {
+            clearInterval(timerInterval);
+            document.getElementById('timer-screen').style.display = 'none';
+            document.body.style.backgroundColor = '#ffffff';
+            document.getElementById('content-screen').style.display = 'flex';
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
