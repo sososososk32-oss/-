@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>важно</title>
+    <title>Для моей сладости</title>
     <style>
         * {box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;}
         body,html {width:100%;height:100%;background-color:#000000;transition:background-color 1.2s cubic-bezier(0.4,0,0.2,1);-webkit-font-smoothing:antialiased;}
@@ -12,7 +12,7 @@
         #countdown {font-size:56px;font-weight:300;letter-spacing:-1px;font-variant-numeric:tabular-nums;opacity:0.95;}
         #content-screen {display:none;width:100%;min-height:100vh;background-color:#ffffff;color:#000000;flex-direction:column;align-items:center;padding:80px 24px;}
         .container {max-width:440px;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;}
-        .birthday-title {font-size:26px;font-weight:600;line-height:1.35;letter-spacing:-0.5px;margin-bottom:48px;color:#111111;}
+        .birthday-title {font-size:24px;font-weight:600;line-height:1.4;letter-spacing:-0.5px;margin-bottom:48px;color:#111111;}
         .media-box {width:100%;border-radius:8px;overflow:hidden;margin-bottom:24px;background-color:#fafafa;}
         .media-box img {width:100%;display:block;object-fit:cover;}
         .gift-text {font-size:16px;font-weight:400;color:#86868b;margin-top:32px;letter-spacing:-0.2px;transition:color 0.3s ease;}
@@ -28,8 +28,9 @@
     <div id="content-screen"></div>
     <script>
         (function(){
+            const testMode = false; 
             const _q8w2e = "MjAyNi0xMC0yOFQwMDowMDowMA==";
-            const _z5x9c = "PGRpdiBjbGFzcz0iY29udGFpbmVyIj48aDEgY2xhc3M9ImJpcnRoZGF5LXRpdGxlIj5IYXBweSBCaXJ0aGRheSBteSBzd2VldGllPC9oMT48ZGl2IGNsYXNzPSJtZWRpYS1ib3giPjxpbWcgc3JjPSJyZXMvY2F0LWtpdHR5LmdpZiI+PC9kaXY+PGRpdiBjbGFzcz0ibWVkaWEtYm94Ij48aW1nIHNyYz0iaHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLTE1MTMyMDEwOTk3MDUtYTk3NDZlMWUyMDFmP3E9ODAmdz0xMDAwIj48L2Rpdj48ZGl2IGNsYXNzPSJnaWZ0LXRleHQiPmdvIGdldCB5b3VyIHByZXNlbnQgJmx0OzM8L2Rpdj48L2Rpdj4=";
+            const _z5x9c = "PGRpdiBjbGFzcz0iY29udGFpbmVyIj48aDEgY2xhc3M9ImJpcnRoZGF5LXRpdGxlIj5IYXBweSBiaXJ0aGRheSwgbXkgbG92ZS4gSSdtIHNvcnJ5IGFib3V0IHdoYXQgaGFwcGVuZWQgdG9kYXkuLi4gSSdtIHRydWx5IHNhZC4gQnV0IEkgaG9wZSB0aGF0IHNlZWluZyB0aGlzIHBhZ2Ugd2lsbCBsaWZ0IHlvdXIgc3Bpcml0cy4gSSBtYWRlIHRoaXMgc2l0ZSBlc3BlY2lhbGx5IGZvciB5b3UsIGFuZCB0aGlzIGlzIG5vdCB5b3VyIGVudGlyZSBnaWZ0LjwvaDE+PGRpdiBjbGFzcz0ibWVkaWEtYm94Ij48aW1nIHNyYz0icmVzL2NhdC1raXR0eS5naWYiPjwvZGl2PjxkaXYgY2xhc3M9Im1lZGlhLWJveCI+PGltZyBzcmM9InJlcy9teS1waG90by5qcGciPjwvZGl2PjxkaXYgY2xhc3M9Im1lZGlhLWJveCI+PC9kaXY+PGRpdiBjbGFzcz0iZ2lmdC10ZXh0Ij5nbyBnZXQgeW91ciBwcmVzZW50ICZsdDszPC9kaXY+PC9kaXY+";
             
             const _v4b8n = new Date(atob(_q8w2e)).getTime();
             
@@ -37,7 +38,7 @@
                 const _p0o1i = new Date().getTime();
                 const _g4f5d = _v4b8n - _p0o1i;
                 
-                if(_g4f5d <= 0){
+                if(testMode || _g4f5d <= 0){
                     _l7k3j();
                     return;
                 }
